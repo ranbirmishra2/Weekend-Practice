@@ -1,17 +1,24 @@
 package com.hello.application;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class HelloControllerApplicationTests {
@@ -42,17 +49,17 @@ class HelloControllerApplicationTests {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(requestBody))
 				.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+				.andExpect(MockMvcResultMatchers.content().string("15")); // Incorrect expected result
 	}
 	@Test
-	public void testtwosubNumbers() throws Exception {
+	public void testsuiteNumbers() throws Exception {
 		String requestBody = "{\"number1\": 5, \"number2\": 10}";
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/subtract")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(requestBody))
 				.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+				.andExpect(MockMvcResultMatchers.content().string("-5")); // Incorrect expected result
 	}
 	@Test
 	public void testtwomulNumbers() throws Exception {
@@ -62,7 +69,7 @@ class HelloControllerApplicationTests {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(requestBody))
 				.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+				.andExpect(MockMvcResultMatchers.content().string("50")); // Incorrect expected result
 	}
 	@Test
 	public void testtwodivNumbers() throws Exception {
@@ -72,7 +79,7 @@ class HelloControllerApplicationTests {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(requestBody))
 				.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+				.andExpect(MockMvcResultMatchers.content().string("0.5")); // Correct expected result
 	}
 	@Test
 	public void testDivideByZero() throws Exception {

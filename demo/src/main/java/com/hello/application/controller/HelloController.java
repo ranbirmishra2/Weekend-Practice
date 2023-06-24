@@ -13,9 +13,8 @@ public class HelloController {
 
 
     @PostMapping("/add")
-    public int addNumbers(@RequestBody NumberRequest numbersRequest) {
-        int result = numbersRequest.getNumber1() + numbersRequest.getNumber2();
-        return result;
+    public int addNumbers(@RequestBody NumberRequest request) {
+        return request.getNumber1() + request.getNumber2();
     }
     @PostMapping("/multiply")
     public int multiplyNumbers(@RequestBody NumberRequest request) {
@@ -26,8 +25,11 @@ public class HelloController {
         return request.getNumber1() - request.getNumber2();
     }
     @PostMapping("/divide")
-    public int divideNumbers(@RequestBody NumberRequest request) {
-        return request.getNumber1() / request.getNumber2();
+    public double divideNumbers(@RequestBody NumberRequest request) {
+        if (request.getNumber2() != 0) {
+            return (double) request.getNumber1() / request.getNumber2();
+        } else {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
     }
-
 }

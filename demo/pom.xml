@@ -39,11 +39,11 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.2.2.Final</version>
 		</dependency>
-
-		<!-- Database Driver (e.g., H2 for in-memory database) -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version> <!-- Or a newer version if available -->
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -53,6 +53,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration><mainClass>org.springboot.app.Main</mainClass></configuration>
 			</plugin>
 		</plugins>
 	</build>
