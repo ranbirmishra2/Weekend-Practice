@@ -44,6 +44,44 @@ class HelloControllerApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
 	}
+	@Test
+	public void testtwosubNumbers() throws Exception {
+		String requestBody = "{\"number1\": 5, \"number2\": 10}";
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/subtract")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(requestBody))
+				.andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+	}
+	@Test
+	public void testtwomulNumbers() throws Exception {
+		String requestBody = "{\"number1\": 5, \"number2\": 10}";
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/multiply")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(requestBody))
+				.andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+	}
+	@Test
+	public void testtwodivNumbers() throws Exception {
+		String requestBody = "{\"number1\": 5, \"number2\": 10}";
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/divide")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(requestBody))
+				.andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("20")); // Incorrect expected result
+	}
+	@Test
+	public void testDivideByZero() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/divide")
+						.param("number1", "10")
+						.param("number2", "0"))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest())
+				.andExpect(MockMvcResultMatchers.content().string("Error: Division by zero is not allowed."));
+	}
 
 
 }
